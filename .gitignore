@@ -1,0 +1,13 @@
+app/agent
+app/client/*
+!app/client/index.html
+
+dist
+target
+node_modules
+
+.nrepl-port
+*.log
+.lein-repl-history
+
+.DS_Store
