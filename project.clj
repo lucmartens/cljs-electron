@@ -31,7 +31,6 @@
                 :preloads [devtools.preload]
                 :optimizations :none}}
 
-
     :prod-agent
     {:source-paths ["src/agent" "src/common"]
       :compiler {:main agent.core

@@ -13,5 +13,5 @@ repl:
 start:
 	yarn electron .
 
-dist:
-	yarn electron-builder
+dist: build
+	yarn electron-builder --mac
