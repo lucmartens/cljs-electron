@@ -2,12 +2,14 @@
   "version": "1.0.0",
   "name": "cljs-electron",
   "main": "app/agent/js/agent.js",
-
   "build": {
     "appId": "your.id",
     "remoteBuild": false,
     "mac": {
       "category": "your.app.category.type"
+    },
+    "publish": {
+      "provider": "github"
     }
   },
 
@@ -15,5 +17,8 @@
     "electron": "^1.8.2",
     "electron-builder": "^19.56.0",
     "ws": "^4.0.0"
+  },
+  "dependencies": {
+    "electron-updater": "^2.20.1"
   }
 }

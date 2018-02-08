@@ -5,8 +5,11 @@
 (defonce electron       (js/require "electron"))
 (defonce app            (.-app electron))
 (defonce browser-window (.-BrowserWindow electron))
+(defonce auto-updater   (.-autoUpdater (js/require "electron-updater")))
 
 (nodejs/enable-util-print!)
+
+(.checkForUpdatesAndNotify auto-updater)
 
 (def main-window (atom nil))
 

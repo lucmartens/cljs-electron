@@ -1,0 +1,34 @@
+os: osx
+osx_image: xcode9.2
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+    - HOMEBREW_NO_AUTO_UPDATE=1
+
+cache:
+  directories:
+    - node_modules
+    - $HOME/.m2
+    - $HOME/.cache/yarn
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/Library/Caches/Homebrew
+
+before_install:
+  - brew install yarn leiningen
+  - echo $CERTIFICATE | base64 --decode > osx-certs.p12
+  - security create-keychain -p $KEYCHAIN_PASS build.keychain
+  - security default-keychain -s build.keychain
+  - security unlock-keychain -p $KEYCHAIN_PASS build.keychain
+  - security set-keychain-settings -t 3600 -l $HOME/Library/Keychains/build.keychain
+  - security import osx-certs.p12 -k build.keychain -P $CERTIFICATE_PASS -T /usr/bin/codesign
+  - 'security set-key-partition-list -S apple-tool:,apple: -s -k $KEYCHAIN_PASS build.keychain > /dev/null'
+
+install:
+  - lein deps
+  - yarn install
+
+script:
+  if [ -n "$(git tag --contains)" ] ; then make publish ; else make dist ; fi
