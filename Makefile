@@ -14,7 +14,7 @@ start:
 	yarn electron .
 
 dist: build
-	yarn electron-builder --mac --publish never
+	yarn electron-builder --mac --win --publish never
 
 publish: build
 	yarn electron-builder --mac --publish always
