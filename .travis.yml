@@ -27,8 +27,7 @@ before_install:
   - 'security set-key-partition-list -S apple-tool:,apple: -s -k $KEYCHAIN_PASS build.keychain > /dev/null'
 
 install:
-  - lein deps
-  - yarn install
+  - make init
 
 script:
   if [ -n "$(git tag --contains)" ] ; then make publish ; else make dist ; fi
