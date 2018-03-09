@@ -43,12 +43,12 @@ install the application's dependencies.
 ### Local development
 
 Start a Clojure REPL. From the REPL, call `(fig-start)` to start a `figwheel`
-server which will create development artifacts for the agent and client
+server which will create development artifacts for the Agent and Client
 components. These artifacts contain a websocket interface between the component
 and the REPL.
 
 Once figwheel has finished compiling, run `make start` to start the electron
-application using the development artifacts. To connect to the agent or client
+application using the development artifacts. To connect to the Agent or Client
 Clojurescript REPLs, eval `(agent-repl)` or (`client-repl`) from your Clojure
 REPL.
 
