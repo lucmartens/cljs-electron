@@ -10,6 +10,9 @@ watch:
 repl:
 	lein repl
 
+init:
+	yarn install && lein deps
+
 start:
 	yarn electron .
 
